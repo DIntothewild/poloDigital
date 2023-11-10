@@ -133,7 +133,7 @@ app.post("/registro", function(request, response){
 });
 
 /**
- * Termina login y resgistro..........................................................................
+ * Termina login y registro..........................................................................
  */
 app.listen(8000, function(){
     console.log('Server up and running!!!')
@@ -142,8 +142,18 @@ app.listen(8000, function(){
 /**
  * Endpoints para Clientes
  */
+app.get("/clientes", function(request, response){
+    connection.query(`select * from clientes`, function(error, result){
+        if (error){
+            response.status(400).send(`error:${error.message}`);
+            return
+        }
+        response.send(result);
+    })
+    console.log("Listado de clientes en base de datos");
+});
 
-//app.get("/clientes)
+
 
 
 
